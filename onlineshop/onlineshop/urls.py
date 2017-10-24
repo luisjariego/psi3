@@ -20,7 +20,7 @@ from shop import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^shop/', include('shop.urls')),
+    #url(r'^shop/', include('shop.urls')),
     # above maps any URLs starting 
     # with rango/ to be handled by
     # the rango application

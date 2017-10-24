@@ -6,8 +6,8 @@ from shop.models import Category, Product
 
 # Register your models here.
 
-class PageAdmin(admin.ModelAdmin):
-	list_display = ('title','category','url')
+class ProductAdmin(admin.ModelAdmin):
+	list_display = ('prodName','category','price', 'stock', 'availability')
 
 admin.site.register(Category)
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)

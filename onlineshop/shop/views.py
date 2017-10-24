@@ -4,16 +4,20 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from shop.models import Category, Product
+from shop.forms import CategoryForm, ProductForm
 
 # Create your views here.
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    ##context_dict = {'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!"}
+    category_list = Category.objects#.order_by('catName')[:5]
+    product_list = Product.objects#.order_by('-views')[:5]
+    context_dict = {'categories': category_list, 'products': product_list }
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
+	
     return render(request, 'shop/index.html', context=context_dict)
 
 def about(request):
@@ -32,10 +36,10 @@ def show_category(request, category_name_slug):
         
         # Retrieve all of the associated pages.
         # Note that filter() will return a list of page objects or an empty list
-        #pages = Page.objects.filter(category=category)
+        products = Product.objects.filter(category=category)
         
         # Adds our results list to the template context under name pages.
-        #context_dict['pages'] = pages
+        context_dict['products'] = pages
         # We also add the category object from 
         # the database to the context dictionary.
         # We'll use this in the template to verify that the category exists.
@@ -45,7 +49,7 @@ def show_category(request, category_name_slug):
         # Don't do anything - 
         # the template will display the "no category" message for us.
         context_dict['category'] = None
-        #context_dict['pages'] = None
+        context_dict['products'] = None
     
     # Go render the response and return it to the client.
     return render(request, 'shop/category.html', context_dict)
@@ -89,7 +93,8 @@ def add_product(request, category_name_slug):
             if category:
                 product = form.save(commit=False)
                 product.category = category
-                product.views = 0
+                product.stock = 1
+                product.availability = True
                 product.save()
                 return show_category(request, category_name_slug)
         else:
