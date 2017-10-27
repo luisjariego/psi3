@@ -32,8 +32,8 @@ class Product(models.Model):
     price = models.DecimalField( decimal_places = 2, max_digits = 8, default = 0) #??
     stock = models.IntegerField( default = 0) #??
     availability = models.BooleanField(default = True)
-    created = models.DateTimeField(default = timezone.now()) #??
-    updated = models.DateTimeField(default = timezone.now()) #??
+    created = models.DateTimeField(default = timezone.now) #??
+    updated = models.DateTimeField(default = timezone.now) #??
 
     def __str__(self):
         return self.title
