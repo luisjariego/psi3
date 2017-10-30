@@ -12,15 +12,15 @@ class Category(models.Model):
     catName = models.CharField(max_length=128, unique=True)
     catSlug = models.SlugField(blank=True, unique=True)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.catName)
         super(Category, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'categories'
     def __str__(self):
-        return self.name
+        return self.catName
     def __unicode__(self):
-        return self.name
+        return self.catName
 
 
 class Product(models.Model):
@@ -36,7 +36,7 @@ class Product(models.Model):
     updated = models.DateTimeField(default = timezone.now) #??
 
     def __str__(self):
-        return self.title
+        return self.prodName
     def __unicode__(self):
-        return self.title
+        return self.prodName
 
