@@ -29,9 +29,22 @@ def populate():
 		"description":"A powerfull microwave with grill function",
 		"price": 79,
 		"stock": 2,
-		"availability": True} ]
+		"availability": True}
+		 ]
 	washing_machines = [ ]
-	refrigerators = [ ]
+	refrigerators = [ 
+		{"prodName": "Samsung Refrigerator in Stainless Steel",
+		"image": "stainless-steel-samsung.jpg",
+		"description":"CoolSelect Pantry provides added temperature control. High-Efficiency LED Lighting helps you quickly spot what you want",
+		"price": 998,
+		"stock": 5,
+		"availability": True},
+		{"prodName": "Frigidaire Refrigerator in Black Stainless Steel",
+		"image": "Tblack-stainless-steel-frigidaire.jpg",
+		"description":"Practical has never looked so stylish with Black Stainless Steel. Corner to corner LED lighting for better visibility",
+		"price": 1298,
+		"stock": 0,
+		"availability": False}]
 	vacuum_cleaners = [ ]
 	cats = {"Microwave ovens": {"products": microwaves, "catSlug": "microwaves" },
 		"Washing machines": {"products": washing_machines, "catSlug": "washing_machines" },
@@ -50,16 +63,16 @@ def populate():
 	for cat, cat_data in cats.items():
 		c = add_cat(cat)
 		for p in cat_data["products"]:
-			add_product(c, p["prodName"], p["prodSlug"], p["image"], p["description"], p["price"], p["stock"], p["availability"])
+			add_product(c, p["prodName"], p["image"], p["description"], p["price"], p["stock"], p["availability"])
 			# Print out the categories we have added.
 
 	for c in Category.objects.all():
 		for p in Product.objects.filter(category=c):
 			print("- {0} - {1}".format(str(c), str(p)))
 
-def add_product(cat, prodName, prodSlug, image, description, price, stock, availability, created, updated):
+def add_product(cat, prodName, image, description, price, stock, availability):
 	imageObject = File(open(os.path.join("images", image),'r')) #From where we upload it
-	p = Product.objects.get_or_create(category=cat, prodName=prodName, prodSlug=prodSlug)[0]
+	p = Product.objects.get_or_create(category=cat, prodName=prodName)[0]
 	p.image.save(image, imageObject, save= True)
 	p.description=description
 	p.price=price
