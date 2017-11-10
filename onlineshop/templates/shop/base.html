@@ -2,8 +2,21 @@
 {% load staticfiles %}
 
 {% block extra_css %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Luis Jariego, David Nevado">
 	<link rel="stylesheet" type="text/css"
 		href='{% static "css/mycss.css" %}' />
+	<link rel="stylesheet" type="text/css"
+		href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}' />
+	<!--
+	<link rel="stylesheet" type="text/css"
+		href='{% static "vendor/bootstrap/css/bootstrap.min.css.map" %}' />
+	-->
+	<link rel="stylesheet" type="text/css"
+		href='{% static "vendor/simple-sidebar.css" %}' />
 {% endblock extra_css %}
 
 <!DOCTYPE html>
@@ -14,20 +27,41 @@
 	</head>
 
 	<body>
-		<div>
-			{% block header %}{% endblock %}
-		</div>
-		
-		<div>
-			{% block shoppingcart %}{% endblock %}
-		</div>
-		
-		<div>
-			{% block main %}{% endblock %}
-		</div>
+		<div id="wrapper">
+			<div>
+				{% block header %}{% endblock %}
+			</div>
+			
+			<div>
+				{% block shoppingcart %}{% endblock %}
+			</div>
+			 <!-- Sidebar -->
+	        <div id="sidebar-wrapper">
+	            {% block sidebar %}{% endblock %}
+	        </div>
+	        <!--
+			<div>
+				{% block main %}{% endblock %}
+			</div>
+			-->
+			<div id="page-content-wrapper">
+	            <div class="container-fluid">
+	            	<div>
+					{% block body_block %}{% endblock %}
 
-		<div>
-			{% block body_block %}{% endblock %}
+				</div>
+			</div>
 		</div>
+		 <!-- Bootstrap core JavaScript -->
+    <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
+    <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 	</body>
 </html>

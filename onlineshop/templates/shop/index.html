@@ -2,29 +2,30 @@
 
 {% load staticfiles %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Chop{% endblock %}
 
 {% block header %}{% endblock %}
 
 {% block shoppingcart %}{% endblock %}
 
-{% block main %} {% endblock %}
-
-{% block body_block %}
-<h1> Chop <h1>
-
+{% block sidebar %}
+ <!-- Sidebar -->
 	{% if categories %}
-		<ul>
+		<ul class="sidebar-nav">
 		{% for cat in categories %}
-			<li>{{cat.catName}}</li>
+			<li class="sidebar-brand">{{cat.catName}}</li>
 		{% endfor %}
 		</ul>
 		{% else %}
 			There are no categories!
 	{% endif %}
+{% endblock %}
 
+{% block main %} {% endblock %}
 
-
+{% block body_block %}
+<h1> Chop <h1>
+	 <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
 	{% if products %}
 		<div id="product-main-container">
 		{% for product in products %}
