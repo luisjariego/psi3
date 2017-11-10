@@ -30,7 +30,7 @@ SECRET_KEY = '*&t)=ur=pr!4s3hp)p@hwaa&(jx4bd(-jvogx47n4&@e5(9c^y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'dry-river-83015.herokuapp.com', u'localhost'] #TODO heroku repository
+ALLOWED_HOSTS = [u'dry-river-83015.herokuapp.com', u'127.0.0.1']
 
 
 # Application definition
@@ -124,12 +124,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticHeroku')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [STATIC_DIR, ]
+STATICFILES_DIRS = (
+	STATIC_PATH,
+)
 
 # Media files
 
-MEDIA_ROOT = os.path.join(MEDIA_DIR, 'images/products')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = 'media/'
 

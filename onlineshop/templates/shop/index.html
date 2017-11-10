@@ -1,12 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'shop/base.html' %}
 
 {% load staticfiles %}
 
 {% block title %}Index{% endblock %}
 
-{% block body_block %}
+{% block header %}{% endblock %}
 
-<h1>Shop</h1>
+{% block shoppingcart %}{% endblock %}
+
+{% block main %} {% endblock %}
+
+{% block body_block %}
+<h1> Chop <h1>
+
+	{% if categories %}
+		<ul>
+		{% for cat in categories %}
+			<li>{{cat.catName}}</li>
+		{% endfor %}
+		</ul>
+		{% else %}
+			There are no categories!
+	{% endif %}
+
+
+
+	{% if products %}
+		<div id="product-main-container">
+		{% for product in products %}
+			<div class='single-product-container'>
+				{{ product.prodName }}
+				<img src= "{{  product.image.url }}">
+			</div>
+		{% endfor %}
+		</div>
+	{% else %}
+		<strong> No products for this category yet!</strong>
+	{% endif %}
+
 
 {% endblock %}
-

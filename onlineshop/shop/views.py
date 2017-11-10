@@ -11,8 +11,8 @@ from shop.forms import CategoryForm, ProductForm
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    category_list = Category.objects#.order_by('catName')[:5]
-    product_list = Product.objects#.order_by('-views')[:5]
+    category_list = Category.objects.all()#.order_by('catName')[:5]
+    product_list = Product.objects.all()#.order_by('-views')[:5]
     context_dict = {'categories': category_list, 'products': product_list }
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
@@ -102,4 +102,25 @@ def add_product(request, category_name_slug):
     
     context_dict = {'form':form, 'category': category}
     return render(request, 'shop/add_product.html', context_dict)
+
+def base(request):
+	return render(request, 'shop/base.html');
+
+def product_list(request, catSlug=None):
+	categories = Category.objects
+	if catSlug is not None:
+		category = Category.objects.filter(catSlug = catSlug)
+		products = Product.objects.filter(category = category)
+	else:
+		category = None
+		products = Product.objects
+	return render(request, 'shop/list.html', 
+			{'category': category,
+			 'categories': categories,
+			 'products': products} )
+
+def product_detail(request, prodId, prodSlug):
+	products = Product.objects.get(prodId = prodId)
+	return render(request, 'shop/detail.html', {'product': product})
+
 

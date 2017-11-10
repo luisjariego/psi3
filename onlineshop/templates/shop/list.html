@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block shoppingcart %}{% endblock %}
+
+{% block main %} {% endblock %}
+
+{% block body_block %}
+
+<h1>{{ category.name }}</h1>
+	{% if category %}
+		{% if products %}
+			<ul>
+			{% for product in products %}
+				<li>{{ product.name }}</li>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<strong> No products for this category yet!</strong>
+		{% endif %}
+		{% else %}
+			The specified category {{ category.name }} does not exist!
+	{% endif %}
+{% endblock %}

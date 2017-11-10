@@ -16,16 +16,19 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include 
+from django.conf.urls import static 
 from shop import views
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url(r'^', include('shop.urls')),
     url(r'^shop/', include('shop.urls')),
-    # above maps any URLs starting 
+    url(r'^base/', include('shop.urls')),
+    # above maps any URLs starting
     # with rango/ to be handled by
     # the rango application
-    url(r'^admin/', admin.site.urls),
-] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^admin/', admin.site.urls)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
+ + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

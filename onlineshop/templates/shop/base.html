@@ -1,0 +1,33 @@
+	
+{% load staticfiles %}
+
+{% block extra_css %}
+	<link rel="stylesheet" type="text/css"
+		href='{% static "css/mycss.css" %}' />
+{% endblock extra_css %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>OnlineShop - {% block title %}{% endblock %}</title>
+		
+	</head>
+
+	<body>
+		<div>
+			{% block header %}{% endblock %}
+		</div>
+		
+		<div>
+			{% block shoppingcart %}{% endblock %}
+		</div>
+		
+		<div>
+			{% block main %}{% endblock %}
+		</div>
+
+		<div>
+			{% block body_block %}{% endblock %}
+		</div>
+	</body>
+</html>
