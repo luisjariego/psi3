@@ -28,40 +28,52 @@
 
 	<body>
 		<div id="wrapper">
+
 			<div>
-				{% block header %}{% endblock %}
+				{% block header %} {% endblock %}
 			</div>
 			
 			<div>
 				{% block shoppingcart %}{% endblock %}
 			</div>
 			 <!-- Sidebar -->
-	        <div id="sidebar-wrapper">
-	            {% block sidebar %}{% endblock %}
-	        </div>
-	        <!--
-			<div>
-				{% block main %}{% endblock %}
+			<div id="sidebar-wrapper">
+			    {% block sidebar %}{% endblock %}
 			</div>
+	        	<!--
+				<div>
+					{% block main %}{% endblock %}
+				</div>
 			-->
 			<div id="page-content-wrapper">
-	            <div class="container-fluid">
-	            	<div>
-					{% block body_block %}{% endblock %}
+	            		<div class="container-fluid">
+					<div id="header-wrap">
+						<header>
+							<a href="{{ BASE_DIR}}/"> <h3>Household Appliances Shop</h3> </a>
+						</header>
+					</div>
+	            			<div>
+						{% block body_block %}{% endblock %}
 
+					</div>
 				</div>
 			</div>
 		</div>
-		 <!-- Bootstrap core JavaScript -->
-    <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
-    <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+		
+		<div id="footer">
+			<hr>
+			David Nevado & Luis Jariego - 2017 Copyright © All rights reserved
+		</div>
+		<!-- Bootstrap core JavaScript -->
+		<script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
+		<script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+		<!-- Menu Toggle Script -->
+		<script>
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
+			});
+		</script>
 	</body>
 </html>

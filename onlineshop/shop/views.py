@@ -119,8 +119,8 @@ def product_list(request, catSlug=None):
 			 'categories': categories,
 			 'products': products} )
 
-def product_detail(request, prodId, prodSlug):
-	products = Product.objects.get(prodId = prodId)
+def product_detail(request, id, prodSlug):
+	product = Product.objects.get(id = id)
 	return render(request, 'shop/detail.html', {'product': product})
 
 

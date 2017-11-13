@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 
-{% block title %}Chop{% endblock %}
+{% block title %}Household Appliances{% endblock %}
 
 {% block header %}{% endblock %}
 
@@ -12,9 +12,11 @@
  <!-- Sidebar -->
 	{% if categories %}
 		<ul class="sidebar-nav">
-		{% for cat in categories %}
-			<li class="sidebar-brand">{{cat.catName}}</li>
-		{% endfor %}
+			{% for cat in categories %}
+				<li class="sidebar-brand"> <a href="{{cat.catSlug}}"> {{cat.catName}} </a> </li>
+			{% endfor %}
+			<hr>
+			<li class="sidebar-brand"> <a href="about"> About </a></li>
 		</ul>
 		{% else %}
 			There are no categories!
@@ -24,14 +26,24 @@
 {% block main %} {% endblock %}
 
 {% block body_block %}
-<h1> Chop <h1>
-	 <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+	
+	<br>
+	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a>
+	<br>
+	<div class="title"> <h2> Products</h2></div>
+	<hr>	
 	{% if products %}
 		<div id="product-main-container">
 		{% for product in products %}
-			<div class='single-product-container'>
-				{{ product.prodName }}
-				<img src= "{{  product.image.url }}">
+			<div class='single-product-container product'>
+				<figure>
+					<a href="{{product.id}}/{{product.prodSlug}}"> 					
+						<img class="fig" src= "{{ MEDIA_URL}}/{{product.image.url}}">
+						{{ product.prodName }}
+					</a>
+					<br>
+					{{product.price}}$
+				</figure>
 			</div>
 		{% endfor %}
 		</div>

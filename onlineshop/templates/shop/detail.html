@@ -6,7 +6,39 @@
 
 {% block body_block %}
 
-<h1>Shop</h1>
-
+	<br>
+	<h3>{{ product.prodName }}</h1>
+	<hr>
+	
+	<p><a href="{{ BASE_DIR }}/{{product.category.catSlug}}"> {{product.category.catName}} </a></p>
+	<div class="det-img">
+		<img src="{{ MEDIA_URL}}/{{product.image.url}}"><br>
+	</div>
+	
+	<h4> Description </h5>
+	<p> {{product.description}} </p>
+	
+	{% if product.stock > 0 %}
+		<p class="in-stock"> {{ product.stock }} in stock </p>
+	{% else %}
+		<p class="not-in-stock"> {{ product.stock }} in stock </p>
+	{% endif %}
+	
+	{% if product.availavility %}
+		<p> The product is available </p>
+	{% else %}
+		<p> The product is NOT available </p>
+	{% endif %}
+	
+	<h3> {{product.price}}$ </h4>
+	
+	Quantity: 
+	<select>
+		{% for i in "xxxxxxxxxx" %}
+			<option value="{{ forloop.counter0 }}"> {{ forloop.counter0 }} </option>
+		{% endfor %}
+	</select>
+	<a href="#" class="btn btn-secondary"> Add to cart </a>
+	
 {% endblock %}
 
