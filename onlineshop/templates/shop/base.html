@@ -29,16 +29,23 @@
 	<body>
 		<div id="wrapper">
 
-			<div>
-				{% block header %} {% endblock %}
-			</div>
-			
-			<div>
-				{% block shoppingcart %}{% endblock %}
-			</div>
 			 <!-- Sidebar -->
 			<div id="sidebar-wrapper">
-			    {% block sidebar %}{% endblock %}
+				{% block sidebar %}
+				 <!-- Sidebar -->
+					{% if categories %}
+						<ul class="sidebar-nav">
+							<li class="sidebar-brand"> <a href="{{BASE_DIR}}/"> Index </a></li>
+							{% for cat in categories %}
+								<li class="sidebar-brand"> <a href="{{BASE_DIR}}/{{cat.catSlug}}"> {{cat.catName}} </a> </li>
+							{% endfor %}
+							<hr>
+							<li class="sidebar-brand"> <a href="{{BASE_DIR}}/about"> About </a></li>
+						</ul>
+						{% else %}
+							There are no categories!
+					{% endif %}
+				{% endblock %}
 			</div>
 	        	<!--
 				<div>
@@ -49,8 +56,16 @@
 	            		<div class="container-fluid">
 					<div id="header-wrap">
 						<header>
-							<a href="{{ BASE_DIR}}/"> <h3>Household Appliances Shop</h3> </a>
+							{% block header %} 
+								<h3><a href="{{ BASE_DIR}}/"> Household Appliances Shop </a></h3>
+							{% endblock %}
 						</header>
+			
+						<div id="cart-wrap">
+							{% block shoppingcart %}
+								<h6>Your cart is empty</h6>
+							{% endblock %}
+						</div>
 					</div>
 	            			<div>
 						{% block body_block %}{% endblock %}
@@ -63,6 +78,7 @@
 		<div id="footer">
 			<hr>
 			David Nevado & Luis Jariego - 2017 Copyright © All rights reserved
+			<br>
 		</div>
 		<!-- Bootstrap core JavaScript -->
 		<script src='{% static "vendor/jquery/jquery.min.js" %}'></script>

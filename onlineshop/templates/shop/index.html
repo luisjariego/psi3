@@ -2,26 +2,7 @@
 
 {% load staticfiles %}
 
-{% block title %}Household Appliances{% endblock %}
-
-{% block header %}{% endblock %}
-
-{% block shoppingcart %}{% endblock %}
-
-{% block sidebar %}
- <!-- Sidebar -->
-	{% if categories %}
-		<ul class="sidebar-nav">
-			{% for cat in categories %}
-				<li class="sidebar-brand"> <a href="{{cat.catSlug}}"> {{cat.catName}} </a> </li>
-			{% endfor %}
-			<hr>
-			<li class="sidebar-brand"> <a href="about"> About </a></li>
-		</ul>
-		{% else %}
-			There are no categories!
-	{% endif %}
-{% endblock %}
+{% block title %}Index{% endblock %}
 
 {% block main %} {% endblock %}
 
@@ -36,20 +17,19 @@
 		<div id="product-main-container">
 		{% for product in products %}
 			<div class='single-product-container product'>
-				<figure>
-					<a href="{{product.id}}/{{product.prodSlug}}"> 					
-						<img class="fig" src= "{{ MEDIA_URL}}/{{product.image.url}}">
-						{{ product.prodName }}
-					</a>
-					<br>
-					{{product.price}}$
-				</figure>
+				<a href="{{ BASE_DIR}}/{{product.id}}/{{product.prodSlug}}">
+					<figure class="fig">		
+						<img src= "{{ MEDIA_URL}}/{{product.image.url}}">
+					</figure>
+					{{ product.prodName }}
+				</a>
+				<br>
+				{{product.price}}$
 			</div>
 		{% endfor %}
 		</div>
 	{% else %}
-		<strong> No products for this category yet!</strong>
+		<strong> No products yet!</strong>
 	{% endif %}
-
 
 {% endblock %}

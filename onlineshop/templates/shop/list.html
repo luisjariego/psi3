@@ -1,29 +1,37 @@
-{% extends 'base.html' %}
+{% extends 'shop/base.html' %}
 
-{% block title %}Index{% endblock %}
+{% load staticfiles %}
 
-{% block header %}{% endblock %}
-
-{% block shoppingcart %}{% endblock %}
-
-
+{% block title %}{{ category.catName }}{% endblock %}
 
 {% block main %} {% endblock %}
 
 {% block body_block %}
-
-<h1>{{ category.name }}</h1>
+	
+	<br>
+	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a>
+	<br>
 	{% if category %}
-		{% if products %}
-			<ul>
-			{% for product in products %}
-				<li>{{ product.name }}</li>
-			{% endfor %}
-			</ul>
-		{% else %}
-			<strong> No products for this category yet!</strong>
-		{% endif %}
-		{% else %}
-			The specified category {{ category.name }} does not exist!
+	<div class="title"> <h2> {{ category.catName }} </h2></div>
 	{% endif %}
+	<hr>	
+	{% if products %}
+		<div id="product-main-container">
+		{% for product in products %}
+			<div class='single-product-container product'>
+				<a href="{{ BASE_DIR}}/{{product.id}}/{{product.prodSlug}}">
+					<figure class="fig">		
+						<img src= "{{ MEDIA_URL}}/{{product.image.url}}">
+					</figure>
+					{{ product.prodName }}
+				</a>
+				<br>
+				{{product.price}}$
+			</div>
+		{% endfor %}
+		</div>
+	{% else %}
+		<strong> No products yet!</strong>
+	{% endif %}
+
 {% endblock %}

@@ -168,7 +168,7 @@ def add_product(cat, prodName, image, description, price, stock, availability):
 	except Product.DoesNotExist:
 		imageObject = File(open(os.path.join("images/", image),'r')) #From where we upload it
 		p = Product.objects.create(category=cat, prodName=prodName)
-		p.image.save(image, imageObject, save= True)
+		p.image.save("""%s/%s"""%(cat.catSlug, image), imageObject, save= True)
 		p.description=description
 		p.price=price
 		p.stock=stock

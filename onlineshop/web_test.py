@@ -40,8 +40,8 @@ class onLineShopTester(unittest.TestCase):
                  "kokopelli-tattoo-5",
                  "kokopelli-tattoo-design"]
                 }
-    chromeDriver = "/usr/local/bin/chromedriver"
-    imagesPath = "/home/roberto/Docencia/PSI/psi_2017-18/Assigns/assign3/onLineShop/static/"
+    chromeDriver = "../ficheros_psi3/chromedriver"
+    imagesPath = "./static/"
 
     def setUp(self):
 #        self.driver = webdriver.Firefox()

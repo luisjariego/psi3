@@ -2,10 +2,14 @@
 
 {% load staticfiles %}
 
-{% block title %}Index{% endblock %}
+{% block title %}{{ category.catName }}{% endblock %}
+
+{% block main %} {% endblock %}
 
 {% block body_block %}
-
+	<br>
+	<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a>
+	<br>
 	<br>
 	<h3>{{ product.prodName }}</h1>
 	<hr>
