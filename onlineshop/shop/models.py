@@ -28,9 +28,9 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category)
     prodName = models.CharField(max_length=128, unique=True)
-    prodSlug = models.SlugField( unique=True, null=True)
+    prodSlug = models.SlugField( unique=True, blank=True)
     image = models.ImageField(upload_to = './', null=True)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=1000)
     price = models.DecimalField( decimal_places = 2, max_digits = 8, default = 0) #??
     stock = models.IntegerField( default = 0) #??
     availability = models.BooleanField(default = True)
