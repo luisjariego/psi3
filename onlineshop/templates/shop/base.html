@@ -33,18 +33,14 @@
 			<div id="sidebar-wrapper">
 				{% block sidebar %}
 				 <!-- Sidebar -->
-					{% if categories %}
-						<ul class="sidebar-nav">
-							<li class="sidebar-brand"> <a href="{{BASE_DIR}}/"> Index </a></li>
-							{% for cat in categories %}
-								<li class="sidebar-brand"> <a href="{{BASE_DIR}}/{{cat.catSlug}}"> {{cat.catName}} </a> </li>
-							{% endfor %}
-							<hr>
-							<li class="sidebar-brand"> <a href="{{BASE_DIR}}/about"> About </a></li>
-						</ul>
-						{% else %}
-							There are no categories!
-					{% endif %}
+					<ul class="sidebar-nav">
+						<li class="sidebar-brand"> <a href="{% url 'product_list' %}"> All products </a></li>
+						{% for cat in categories %}
+							<li class="sidebar-brand"> <a href="{% url 'product_list_by_category' cat.catSlug %}"> {{cat.catName}} </a> </li>
+						{% endfor %}
+						<hr>
+						<li class="sidebar-brand"> <a href="{% url 'about' %}"> About </a></li>
+					</ul>
 				{% endblock %}
 			</div>
 	        	<!--
@@ -57,7 +53,7 @@
 					<div id="header-wrap">
 						<header>
 							{% block header %} 
-								<h3><a href="{{ BASE_DIR}}/"> Household Appliances Shop </a></h3>
+								<h3><a href="{% url 'product_list' %}"> Household Appliances Shop </a></h3>
 							{% endblock %}
 						</header>
 			
