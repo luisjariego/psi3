@@ -58,28 +58,28 @@ def populate():
 		"availability": True}
 		 ]
 	washing_machines = [
-		{"prodName": "Bosch WAQ 28468, LCD Display, A+++",
+		{"prodName": "Bosch WAQ 28468 LCD Display A+++",
 		"prodSlug": "BOSCH_WAQ28468",
 		"image": "Bosch WAQ 28468, LCD Display, A+++.jpg",
 		"description":"New exterior structure, specially made to be more silent.",
 		"price": 389,
 		"stock": 7,
 		"availability": True},
-		{"prodName": "Beko WTE6511BW, 39L, A+++",
+		{"prodName": "Beko WTE6511BW 39L A+++",
 		"prodSlug": "Beko_WTE6511BW",
 		"image": "Beko WTE6511BW, 39L, A+++.jpg",
 		"description":"Get impecable results in all your clothes.",
 		"price": 219,
 		"stock": 5,
 		"availability": True},
-		{"prodName": "Balay 3TS976BA, A+++",
+		{"prodName": "Balay 3TS976BA A+++",
 		"prodSlug": "Balay_3TS976BA",
 		"image": "Balay 3TS976BA, A+++.jpg",
 		"description":"Clean up!",
 		"price": 295,
 		"stock": 2,
 		"availability": True},
-		{"prodName": "Siemens WM14Q468ES, Digital display, A+++",
+		{"prodName": "Siemens WM14Q468ES Digital display A+++",
 		"prodSlug": "Siemens_WM14Q468ES",
 		"image": "Siemens WM14Q468ES, Digital display, A+++.jpg",
 		"description":"Buy it!",
@@ -113,14 +113,14 @@ def populate():
 		"price": 1298,
 		"stock": 0,
 		"availability": False},
-		{"prodName": "American fridge - Samsung RS7528THCSL A++, Display, Inox",
+		{"prodName": "American fridge - Samsung RS7528THCSL A++ Display Inox",
 		"image": "American fridge - Samsung RS7528THCSL A++, Display, Inox.jpg",
 		"description":"Best design, with digital inverter compressor that ensures an optimal and silent functioning.",
 		"price": 999,
 		"stock": 4,
 		"availability": True},
-		{"prodName": "Balay fridge 3FC1601B 186cm, A++, LEDs",
-		"image": "Balay fridge 3FC1601B 186cm, A++, LEDs.jpg",
+		{"prodName": "Balay fridge 3FC1601B 186cm A++ LEDs",
+		"image": "Balay fridge 3FC1601B 186cm, A++ LEDs.jpg",
 		"description":"The perfect ally to fit all your products.",
 		"price": 475,
 		"stock": 2,
@@ -131,8 +131,8 @@ def populate():
 		"price": 233,
 		"stock": 25,
 		"availability": True},
-		{"prodName": "Della Mini Compact Refrigerator Freezer, White",
-		"image": "Della Mini Compact Refrigerator Freezer, White.jpg",
+		{"prodName": "Della Mini Compact Refrigerator Freezer White",
+		"image": "Della Mini Compact Refrigerator Freezer White.jpg",
 		"description":"Adjustable shelf in the refrigerator can be configured to help you stay organized and fit taller items when needed.",
 		"price": 225,
 		"stock": 78,
@@ -166,7 +166,9 @@ def add_product(cat, prodName, image, description, price, stock, availability):
 	try:
 	     p = Product.objects.get(prodName=prodName)
 	except Product.DoesNotExist:
-		imageObject = File(open(os.path.join("images/", image),'r')) #From where we upload it
+		ext='jpg'
+		imagePath=os.path.join('media/',cat.catName.lower(),prodName+"."+ext)
+		imageObject = File(open(imagePath,'r')) #From where we upload it
 		p = Product.objects.create(category=cat, prodName=prodName)
 		p.image.save("""%s/%s"""%(cat.catName.lower(), image), imageObject, save= True)
 		p.description=description

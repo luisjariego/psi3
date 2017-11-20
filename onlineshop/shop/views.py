@@ -91,6 +91,6 @@ def product_list(request, catSlug):
 def product_detail(request, id, prodSlug):
 	categories = Category.objects.all()
 	product = Product.objects.get(id = id)
-	return render(request, 'shop/detail.html', {'product': product, 'categories': categories})
+	return render(request, 'shop/detail.html', {'product': product, 'categories': categories, 'stock': range( product.stock +1)})
 
 

@@ -65,12 +65,12 @@ class onLineShopTester(unittest.TestCase):
     username    = "alumnodb"
     passwd      = "alumnodb"
     #base_url    = "https://rocky-inlet-76734.herokuapp.com/"
-    base_url     = "http://127.0.0.1:8000/"
+    base_url     = "https://dry-river-83015.herokuapp.com/"
     admin_url    = base_url + "admin/"
     addCategoryPath = "shop/category/add/"
     addProductPath  = "shop/product/add/"
     catList = ["Microwave ovens","Washing machines","Refrigerators"]
-    washing_machines = ["Bosch WAQ 28468, LCD Display A+++",
+    washing_machines = ["Bosch WAQ 28468 LCD Display A+++",
                   "Beko WTE6511BW 39L A+++",
                   "Balay 3TS976BA A+++",
                   "Siemens WM14Q468ES Digital display A+++",
