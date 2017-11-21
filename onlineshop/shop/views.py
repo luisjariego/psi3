@@ -13,7 +13,6 @@ def about(request):
 def base(request):
 	return render(request, 'shop/base.html');
 
-#author: Luis Jariego
 def product_list(request, catSlug=None):
 	categories = Category.objects.all()
 	try:
@@ -27,10 +26,9 @@ def product_list(request, catSlug=None):
 			 'categories': categories,
 			 'products': products} )
 
-#author: Luis Jariego
 def product_detail(request, id, prodSlug):
 	categories = Category.objects.all()
 	product = Product.objects.get(id = id)
-	return render(request, 'shop/detail.html', {'product': product, 'categories': categories, 'stock': range( product.stock +1)})
+	return render(request, 'shop/detail.html', {'product': product, 'stock': range( product.stock +1)})
 
 
